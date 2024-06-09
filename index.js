@@ -1,7 +1,7 @@
 let human_score = 0;
 let computer_score = 0;
 
-playGame();
+//playGame();
 
 function getComputerChoice() {
     let random_computer = Math.floor((Math.random() * 3) + 1);
