@@ -13,24 +13,27 @@ playerScore.textContent = `Player Score: ${human_score}`;
 computerScore.textContent = `Computer Score: ${computer_score}`;
 computerText.textContent = "the computer choice will be shown here."
 
+rockBtn.addEventListener("click", rockChoice)
+scissorsBtn.addEventListener("click", scissorsChoice)
+paperBtn.addEventListener("click", paperChoice)
 
-rockBtn.addEventListener("click", function(){
+function rockChoice () {
     let human_choice = "rock";
-    let computer_choice = getComputerChoice();
-    playRound(human_choice, computer_choice);
-})
-scissorsBtn.addEventListener("click", function(){
-    let human_choice = "scissors";
-    let computer_choice = getComputerChoice();
-    playRound(human_choice, computer_choice);
-})
-paperBtn.addEventListener("click", function(){
+    startGame(human_choice);
+}
+function paperChoice () {
     let human_choice = "paper";
+    startGame(human_choice);
+}
+function scissorsChoice () {
+    let human_choice = "scissors";
+    startGame(human_choice);
+}
+
+function startGame(playerChoice) {
     let computer_choice = getComputerChoice();
-    playRound(human_choice, computer_choice);
-})
-
-
+    playRound(playerChoice, computer_choice);
+}
 
 function getComputerChoice() {
     let random_computer = Math.floor((Math.random() * 3) + 1);
@@ -96,12 +99,22 @@ function playRound (human, computer) {
        computerScore.textContent = `Computer Score: ${computer_score}`;
        roundPlayed+= 1;
        console.log(roundPlayed);
+       checkEnd(roundPlayed);
 }
 
-function playGame () {
-    for (let i = 0; i < 5; i++) {
-    }
-    human_score > computer_score ? alert(`You Win! Your score is ${human_score}, the computer score is ${computer_score}.`) :
-    human_score === computer_score ? alert(`It's a Tie! You and the computer have both a score of ${human_score}`):
-    alert(`You Lose! Your score is ${human_score}, the computer score is ${computer_score}.`);
+function checkEnd(rounds) {
+    if (rounds == 5) results();
+}
+
+function results() {
+    human_score > computer_score ? computerText.innerHTML = computerText.textContent + "<br>You Won The Game!":
+    human_score === computer_score ? computerText.innerHTML = computerText.textContent + "<br>You Lost The Game!":
+    computerText.innerHTML = computerText.textContent + "<br>The Game Ends With a Draw!";
+    endGame()
+}
+
+function endGame() {
+    rockBtn.removeEventListener("click", rockChoice);
+    paperBtn.removeEventListener("click", paperChoice);
+    scissorsBtn.removeEventListener("click", scissorsChoice);
 }
