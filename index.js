@@ -1,7 +1,36 @@
+const rockBtn = document.querySelector("#rock");
+const paperBtn = document.querySelector("#paper");
+const scissorsBtn = document.querySelector("#scissors");
+const playerScore = document.querySelector("#playerscr");
+const computerScore = document.querySelector("#computerscr");
+const computerText = document.querySelector("#computerText");
+
 let human_score = 0;
 let computer_score = 0;
+let roundPlayed = 0;
 
-//playGame();
+playerScore.textContent = `Player Score: ${human_score}`;
+computerScore.textContent = `Computer Score: ${computer_score}`;
+computerText.textContent = "the computer choice will be shown here."
+
+
+rockBtn.addEventListener("click", function(){
+    let human_choice = "rock";
+    let computer_choice = getComputerChoice();
+    playRound(human_choice, computer_choice);
+})
+scissorsBtn.addEventListener("click", function(){
+    let human_choice = "scissors";
+    let computer_choice = getComputerChoice();
+    playRound(human_choice, computer_choice);
+})
+paperBtn.addEventListener("click", function(){
+    let human_choice = "paper";
+    let computer_choice = getComputerChoice();
+    playRound(human_choice, computer_choice);
+})
+
+
 
 function getComputerChoice() {
     let random_computer = Math.floor((Math.random() * 3) + 1);
@@ -20,72 +49,57 @@ function getComputerChoice() {
     return computer_choice;
 }
 
-function getHumanChoice () {
-    while (true) {
-        let human_choice = (window.prompt("Select an Option (rock/paper/scissors)")).toLowerCase();
-        if (human_choice == "rock") {
-            return human_choice;
-        } else if (human_choice == "paper") {
-            return human_choice;
-        } else if (human_choice == "scissors") {
-            return human_choice;
-        } else {
-            alert("Please select a valid option!");
-        }
-    }
-}
-
 function playRound (human, computer) {
     if (human == "rock") {
         switch (computer) {
             case "rock":
-                alert(`The computer choose ${computer}, therefore it's a tie!`);
+                computerText.textContent = `The computer choose ${computer}, therefore it's a tie!`;
                 break;
             case "paper":
-                alert(`The computer choose ${computer}, therefore you lose!`);
+                computerText.textContent = `The computer choose ${computer}, therefore you lose!`;
                 computer_score += 1;
                 break;
             case "scissors":
-                alert(`The computer choose ${computer}, therefore you win!`);
+                computerText.textContent = `The computer choose ${computer}, therefore you win!`;
                 human_score += 1;
                 break;
         }
     } else if (human == "paper") {
         switch (computer) {
             case "rock":
-                alert(`The computer choose ${computer}, therefore you win!`);
+                computerText.textContent = `The computer choose ${computer}, therefore you win!`;
                 human_score += 1;
                 break;
             case "paper":
-                alert(`The computer choose ${computer}, therefore it's a tie!`);
+                computerText.textContent = `The computer choose ${computer}, therefore it's a tie!`;
                 break;
             case "scissors":
-                alert(`The computer choose ${computer}, therefore you lose!`);
+                computerText.textContent = `The computer choose ${computer}, therefore you lose!`;
                 computer_score += 1;
                 break;
         }
     } else {
         switch (computer) {
             case "rock":
-                alert(`The computer choose ${computer}, therefore you lose!`);
+                computerText.textContent = `The computer choose ${computer}, therefore you lose!`;
                 computer_score += 1;
                 break;
             case "paper":
-                alert(`The computer choose ${computer}, therefore you win!`);
+                computerText.textContent = `The computer choose ${computer}, therefore you win!`;
                 human_score += 1;
                 break;
             case "scissors":
-                alert(`The computer choose ${computer}, therefore it's a tie!`);
+                computerText.textContent = `The computer choose ${computer}, therefore it's a tie!`;
                 break;
-        }
-    }
+        }   
+    }  playerScore.textContent = `Player Score: ${human_score}`;
+       computerScore.textContent = `Computer Score: ${computer_score}`;
+       roundPlayed+= 1;
+       console.log(roundPlayed);
 }
 
 function playGame () {
     for (let i = 0; i < 5; i++) {
-        const human_choice = getHumanChoice();
-        const computer_choice = getComputerChoice();
-        playRound(human_choice, computer_choice);
     }
     human_score > computer_score ? alert(`You Win! Your score is ${human_score}, the computer score is ${computer_score}.`) :
     human_score === computer_score ? alert(`It's a Tie! You and the computer have both a score of ${human_score}`):

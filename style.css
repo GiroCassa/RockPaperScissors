@@ -31,10 +31,18 @@ h1 {
 button {
     border: none;
     border-radius: 50px;
+    transition-duration: 0.3s;
+    cursor: pointer;
 }
 .btnContainer {
     display: flex;
     gap: 15px;
+}
+.score ul{
+    list-style-type: none;
+    font-size: 38px;
+    font-weight: 700;
+    margin-bottom: 50px;
 }
 .text {
     font-size: 38px;
@@ -42,12 +50,28 @@ button {
     text-align: center;
     margin-top: 50px;
 }
+#computerText {
+    font-size: 38px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 50px;
+}
 #scissors {
     background-color: #78f182;
+}
+#scissors:hover {
+    border: #78f182 solid 10px;
 }
 #rock {
     background-color: #f97e71;
 }
+#rock:hover {
+    border: #f97e71 solid 10px;
+}
 #paper {
     background-color: #7ed0ec;
 }
+#paper:hover {
+    border: #7ed0ec solid 10px;
+}
+
